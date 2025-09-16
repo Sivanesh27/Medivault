@@ -1,0 +1,9 @@
+Name
+Age
+Email
+Phone Number
+Aadhar ID
+Medical Images
+Implant Details
+Prescriptions
+Bills

@@ -2,12 +2,6 @@
 
 **Empowering Healthcare Innovation, Seamlessly and Securely**
 
-![Last Commit](https://img.shields.io/github/last-commit/your-username/medivault)
-![Languages](https://img.shields.io/github/languages/count/your-username/medivault)
-![Top Language](https://img.shields.io/github/languages/top/your-username/medivault)
-![Issues](https://img.shields.io/github/issues/your-username/medivault)
-![Stars](https://img.shields.io/github/stars/your-username/medivault)
-![License](https://img.shields.io/github/license/your-username/medivault)
 
 ---
 

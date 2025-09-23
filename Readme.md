@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://www.google.com/search?q=https://placehold.co/150x150/3498db/ffffff%3Ftext%3DMV%26font%3Draleway" alt="MediVault Logo">
+<img src="frontend/public/logo192.png" alt="MediVault Logo">
 
 🏥 MediVault: Secure Healthcare Management System
 A modern, full-stack web application designed to streamline patient and administrative healthcare workflows.

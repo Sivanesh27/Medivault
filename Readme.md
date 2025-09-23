@@ -47,9 +47,4 @@ MediVault is a secure and intuitive platform that empowers patients to manage th
 </tr>
 </table>
 
-Database
-
-
-
-Auth
 

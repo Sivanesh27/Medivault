@@ -5,26 +5,51 @@ function Chatbot() {
     { from: "bot", text: "👋 Hello! How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
 
   // Auto-scroll to the bottom when new messages arrive
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, isTyping]);
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message
-    setMessages(prev => [...prev, { from: "user", text: input }]);
-
-    // Simulate bot response
-    setTimeout(() => {
-      setMessages(prev => [...prev, { from: "bot", text: "🤖 I’ll process your query soon!" }]);
-    }, 800);
-
+    const userMessage = { from: 'user', text: input };
+    setMessages(prev => [...prev, userMessage]);
     setInput('');
+    setIsTyping(true); // Show typing indicator
+
+    try {
+      // Fetch response from your backend chatbot API
+      const res = await fetch('http://localhost:5000/api/chatbot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: input }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await res.json();
+      const botMessage = { from: 'bot', text: data.reply };
+      
+      // Add the bot's response to the chat
+      setMessages(prev => [...prev, botMessage]);
+
+    } catch (error) {
+      // Handle any errors that occur during the fetch
+      console.error("Chatbot API error:", error);
+      const errorMessage = { from: 'bot', text: '🤖 Sorry, I am having trouble connecting to my brain right now.' };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+        setIsTyping(false); // Hide typing indicator
+    }
   };
 
   return (
@@ -50,6 +75,18 @@ function Chatbot() {
               </div>
             </div>
           ))}
+           {/* Typing indicator */}
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="px-4 py-2 rounded-2xl text-sm max-w-[70%] bg-gray-200 text-gray-800 rounded-bl-none">
+                <div className="flex items-center space-x-1">
+                    <span className="w-2 h-2 bg-gray-500 rounded-full animate-pulse"></span>
+                    <span className="w-2 h-2 bg-gray-500 rounded-full animate-pulse delay-75"></span>
+                    <span className="w-2 h-2 bg-gray-500 rounded-full animate-pulse delay-150"></span>
+                </div>
+              </div>
+            </div>
+          )}
           <div ref={chatEndRef} />
         </div>
 

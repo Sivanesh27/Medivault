@@ -3,10 +3,46 @@ import React, { useState } from 'react';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(''); // To provide user feedback
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Login with:", { email, password });
+    setMessage('Logging in...'); // Provide instant feedback
+
+    try {
+      // API call to your backend's login route
+      const res = await fetch('http://localhost:5000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // If login is successful (status code 200-299)
+        setMessage('Login successful! Redirecting...');
+        
+        // Store the token for future authenticated requests
+        localStorage.setItem('userToken', data.token);
+
+        // Redirect to the dashboard after a short delay
+        setTimeout(() => {
+          // Use window.location.href for redirection to avoid context errors in isolation
+          window.location.href = '/dashboard';
+        }, 1000);
+
+      } else {
+        // If login fails, display the error message from the backend
+        setMessage(data.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      // Handle network errors or if the server is down
+      console.error('Login error:', error);
+      setMessage('Server error. Please try again later.');
+    }
   };
 
   return (
@@ -59,6 +95,13 @@ function Login() {
             Login
           </button>
         </form>
+
+        {/* Feedback Message */}
+        {message && (
+          <p className={`text-center mt-4 font-medium ${message.includes('successful') ? 'text-green-600' : 'text-red-600'}`}>
+            {message}
+          </p>
+        )}
 
         {/* Footer */}
         <p className="text-center text-gray-500 text-sm mt-6">

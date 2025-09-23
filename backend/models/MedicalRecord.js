@@ -1,43 +1,31 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const medicalRecordSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-
-  scans: [
-    {
-      type: { type: String },
-      imageUrl: String,
-      date: { type: Date, default: Date.now },
-      notes: String
-    }
-  ],
-
-  prescriptions: [
-    {
-      doctor: String,
-      medicines: [{ name: String, dosage: String, duration: String }],
-      date: { type: Date, default: Date.now }
-    }
-  ],
-
-  bills: [
-    {
-      hospitalName: String,
-      amount: Number,
-      date: { type: Date, default: Date.now },
-      pdfUrl: String
-    }
-  ],
-
-  implants: [
-    {
-      implantType: String,
-      serialNumber: String,
-      manufacturer: String,
-      dateImplanted: Date,
-      hospital: String
-    }
-  ]
+const MedicalRecordSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  },
+  recordType: {
+    type: String,
+    required: true,
+    enum: ['Prescription', 'Lab Report', 'Scan', 'Bill', 'Note'],
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+  },
+  // In a real app, you would store a URL to the file in a cloud storage (like AWS S3)
+  fileUrl: {
+    type: String,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model("MedicalRecord", medicalRecordSchema);
+module.exports = mongoose.model('MedicalRecord', MedicalRecordSchema);

@@ -1,9 +1,9 @@
-// src/App.js
+  // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-// ✅ Patient App Pages
+// Patient App Pages 
 import Home from './pages/Hm';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -17,11 +17,11 @@ import SymptomAnalyzer from './pages/SymptomAnalyzer';
 import MedicineReminders from './pages/MedicineReminders';
 import ReportAnalyzer from './pages/ReportAnalyzer';
 import DiseasePredictor from './pages/DiseasePredictor';
-import DiseaseEncyclopedia from './pages/DiseaseEncyclopedia';
+import HealthInsurance from './pages/HealthInsurance';
 import FoodRecommendation from './pages/FoodRecommendation';
 import NearbyHospitals from './pages/NearbyHospitals';
 
-// ✅ Admin Pages
+// Admin Pages
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import PatientSearch from './pages/PatientSearch';
@@ -48,7 +48,7 @@ function App() {
           <Route path="/medicine-reminders" element={<MedicineReminders />} />
           <Route path="/report-analyzer" element={<ReportAnalyzer />} />
           <Route path="/disease-predictor" element={<DiseasePredictor />} />
-          <Route path="/disease-encyclopedia" element={<DiseaseEncyclopedia />} />
+          <Route path="/health-insurance" element={<HealthInsurance />} />
           <Route path="/food-recommendation" element={<FoodRecommendation />} />
           <Route path="/nearby-hospitals" element={<NearbyHospitals />} />
 
@@ -69,4 +69,4 @@ function App() {
 }
 
 export default App;
-
+  

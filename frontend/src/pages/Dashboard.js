@@ -96,14 +96,14 @@ function Dashboard() {
         </Link>
 
         <Link
-          to="/disease-encyclopedia"
+          to="/health-insurance"
           className="bg-white rounded-2xl shadow-md hover:shadow-xl p-6 flex flex-col items-center transition transform hover:-translate-y-1"
         >
-          <span className="text-3xl mb-3">📚</span>
-          <h2 className="text-xl font-semibold text-cyan-600">Disease Encyclopedia</h2>
-          <p className="text-sm text-gray-500 text-center mt-2">Browse information about diseases.</p>
+          <span className="text-3xl mb-3">🛡️</span>
+          <h2 className="text-xl font-semibold text-cyan-600">Health Insurance</h2>
+          <p className="text-sm text-gray-500 text-center mt-2">Apply for or claim your insurance.</p>
         </Link>
-
+        
         <Link
           to="/food-recommendation"
           className="bg-white rounded-2xl shadow-md hover:shadow-xl p-6 flex flex-col items-center transition transform hover:-translate-y-1"

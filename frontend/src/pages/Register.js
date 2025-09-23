@@ -12,8 +12,9 @@ function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    setMessage("Registering...");
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.password) {
@@ -21,9 +22,31 @@ function Register() {
       return;
     }
 
-    // Simulate registration API
-    console.log("Register with:", formData);
-    setMessage("Registration successful!");
+    try {
+      const res = await fetch('http://localhost:5000/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        // If the server responds with an error (e.g., user exists)
+        throw new Error(data.message || 'Failed to register.');
+      }
+
+      // On success
+      setMessage("Registration successful! Please proceed to login.");
+      // Optionally, clear the form
+      setFormData({ name: '', email: '', password: '' });
+
+    } catch (error) {
+      // Handle network errors or errors from the backend
+      setMessage(error.message);
+    }
   };
 
   return (

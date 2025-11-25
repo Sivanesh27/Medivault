@@ -27,13 +27,7 @@ function Home() {
           to="/register"
           className="px-6 py-3 bg-green-600 text-white rounded-xl shadow-md hover:bg-green-700 transition transform hover:-translate-y-1"
         >
-          Register
-        </Link>
-        <Link
-          to="/dashboard"
-          className="px-6 py-3 bg-purple-600 text-white rounded-xl shadow-md hover:bg-purple-700 transition transform hover:-translate-y-1"
-        >
-          Patient Dashboard
+          Patient Register
         </Link>
         <Link
           to="/admin-login"

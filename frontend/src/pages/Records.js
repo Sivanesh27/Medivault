@@ -75,7 +75,7 @@ function Records() {
                 <p className="text-gray-700">{record.details}</p>
                  {record.documentUrl && (
                     <a 
-                      href={record.documentUrl} 
+                      href={`http://localhost:5000${record.documentUrl}`}  
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline text-sm mt-2 inline-block"

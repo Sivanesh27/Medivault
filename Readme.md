@@ -90,4 +90,4 @@ The frontend dev server usually runs at `http://localhost:3000` and the backend 
 
 - **Data Encryption:** Sensitive data should be encrypted at rest and in transit (AES-256 for storage and TLS for transport).
 - **Authentication:** JWT-based authentication for API access; rotate secrets and use short-lived tokens when appropriate.
-- **Standards:** Designed to assist compliance with HIPAA and NDHM; consult legal/compliance teams before production deployment.
+- **Standards:** Designed to assist compliance with HIPAA and NDHM; consult legal/compliance teams before production deployment
